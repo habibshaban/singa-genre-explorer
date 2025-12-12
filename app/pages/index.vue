@@ -1,7 +1,19 @@
 <script setup lang="ts">
+  import { refDebounced } from '@vueuse/core';
 
-const { genres } = useGenres();
   
+  const { genres } = useGenres();
+  
+  const search = ref('');
+  const debouncedSearch = refDebounced(search, 300);
+
+  const filteredGenres = computed(() => {
+    if (!genres.value) return [];
+    if (!debouncedSearch.value) return genres.value;
+    const query = debouncedSearch.value.toLowerCase();
+    return genres.value.filter(genre => genre.name.toLowerCase().includes(query));
+  });
+
 </script>
 
 <template>
@@ -11,9 +23,16 @@ const { genres } = useGenres();
     </h1>
   </div>
 
+  <UInput
+      v-model="search"
+      placeholder="Search genres..."
+      icon="i-heroicons-magnifying-glass-20-solid"
+      class="mb-6 w-full max-w-sm "
+    />
+
   <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4" role="list" aria-label="Genre list">
     <GenreItem
-      v-for="genre in genres"
+      v-for="genre in filteredGenres"
       :key="genre.id"
       :genre="genre"
     >
