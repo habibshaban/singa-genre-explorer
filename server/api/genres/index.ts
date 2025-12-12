@@ -1,3 +1,5 @@
+import { CACHE_TTL } from "~~/server/constants/cache";
+
 export default defineCachedEventHandler(
   async (event): Promise<SingaGenresResponse> => {
     const { apiBaseUrl } = useRuntimeConfig(event);
@@ -14,6 +16,7 @@ export default defineCachedEventHandler(
     }
   },
   {
+    maxAge: CACHE_TTL,
     name: "genres-cache",
   }
 );

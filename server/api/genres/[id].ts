@@ -1,4 +1,5 @@
 import { FetchError } from "ofetch";
+import { CACHE_TTL } from "~~/server/constants/cache";
 
 export default defineCachedEventHandler(
   async (event): Promise<SingaGenre> => {
@@ -32,6 +33,7 @@ export default defineCachedEventHandler(
     }
   },
   {
+    maxAge: CACHE_TTL,
     name: "genre-cache",
     getKey: (event) => {
       const id = getRouterParam(event, "id");
