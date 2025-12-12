@@ -2,7 +2,7 @@
   import { refDebounced } from '@vueuse/core';
 
   
-  const { genres } = useGenres();
+  const { genres , error, refresh } = useGenres();
   
   const search = ref('');
   const debouncedSearch = refDebounced(search, 300);
@@ -32,9 +32,9 @@
       class="mb-6 w-full max-w-sm "
     />
 
-  
-  <EmptyState v-if="!filteredGenres.length" message="No genres found." />
+  <ErrorState v-if="error" :message="error?.message ?? 'Failed to load genres'" @retry="refresh" />
 
+  <EmptyState v-else-if="!filteredGenres.length" message="No genres found." />
 
   <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4" role="list" aria-label="Genre list">
     <GenreItem
