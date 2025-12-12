@@ -9,8 +9,10 @@
 
   const filteredGenres = computed(() => {
     if (!genres.value) return [];
-    if (!debouncedSearch.value) return genres.value;
-    const query = debouncedSearch.value.toLowerCase();
+    // we don't want search empty spaces to affect the search results
+    const trimmedSearch = debouncedSearch.value.trim();
+    if (!trimmedSearch) return genres.value;
+    const query = trimmedSearch.toLowerCase();
     return genres.value.filter(genre => genre.name.toLowerCase().includes(query));
   });
 
