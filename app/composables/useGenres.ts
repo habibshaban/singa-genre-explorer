@@ -1,3 +1,5 @@
+import type { FetchError } from "ofetch";
+
 // later if we had bigger application we can centralize such constants
 const TIME_OUT = 10000;
 
@@ -31,10 +33,16 @@ export function useGenre(id: number) {
     timeout: TIME_OUT,
   });
 
+  const isNotFound = computed(() => {
+    const fetchError = error.value as FetchError | null;
+    return fetchError?.statusCode === 404;
+  });
+
   return {
     genre,
     error,
     pending,
     refresh,
+    isNotFound,
   };
 }
