@@ -7,6 +7,34 @@ I tried to keep everything simple but still show my understanding of Nuxt 4, Nit
 
 ---
 
+## How to Run the Project
+
+To run the project locally:
+
+```bash
+pnpm install
+pnpm run dev
+```
+
+After that, open the URL shown in the terminal (by default `http://localhost:3000`).
+
+The application does not require any authentication or environment variables.
+By default, it uses the public Singa API (`https://api.singa.com/v1.4`).
+
+You can also test the health check endpoint by visiting:
+
+```
+http://localhost:3000/ping
+```
+
+It should return:
+
+```json
+{ "ping": "pong" }
+```
+
+---
+
 ## My Thought Process While Building
 
 When I started the assignment, I wanted to make sure that the structure of the code is clear and easy to follow, and that every piece has a purpose. Because this is a small assignment, I didn’t want to over-engineer or add things that were not needed, but I still wanted the code to look like something I would feel comfortable shipping in a real production environment.
