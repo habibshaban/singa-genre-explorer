@@ -4,6 +4,23 @@ const genreId = Number(route.params.id);
 
 const { genre, pending, error, refresh, isNotFound } = useGenre(genreId);
 
+const pageTitle = computed(() => 
+  genre.value ? `${genre.value.name} - Genre` : 'Genre Details'
+);
+
+const pageDescription = computed(() => 
+  genre.value
+    ? `Explore ${genre.value.name} music genre. Discover songs and artists in the ${genre.value.name} category.`
+    : 'View genre details and explore music categories.'
+);
+
+useSeoMeta({
+  title: () => pageTitle.value,
+  description: () => pageDescription.value,
+  ogTitle: () => pageTitle.value,
+  ogDescription: () => pageDescription.value, 
+});
+
 </script>
 
 <template>
