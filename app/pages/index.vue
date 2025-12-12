@@ -47,8 +47,6 @@
       v-for="genre in filteredGenres"
       :key="genre.id"
       :genre="genre"
-    >
-    {{ genre.name }}
-    </GenreItem>
+    />
   </ul>
 </template>
