@@ -172,9 +172,16 @@ Here is where I used AI:
 - Helped generate the initial text for SEO title/description on the single genre page
 - Helped create the initial About page text/meta
 - Helped create the initial `error.vue` page
-- And In the End Helped me to create this nice Readme file:)
+- And in the End Helped me to create this nice Readme file:)
 
 Final decisions, cleanup, and integration were done by me to match the assignment requirements and keep the code readable.
+
+---
+
+**Optional Improvements (outside the original time box)**
+
+- Refined the `useGenre` composable to improve **DX and reusability**, allowing it to accept refs or getters instead of only raw values.
+- Slightly improved **error handling** to make invalid and not-found states more explicit and robust.
 
 ---
 
