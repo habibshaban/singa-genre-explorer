@@ -1,8 +1,6 @@
 <script setup lang="ts">
 const route = useRoute();
-const genreId = Number(route.params.id);
-
-const { genre, pending, error, refresh, isNotFound } = useGenre(genreId);
+const { genre, pending, error, refresh, isNotFound } = useGenre(() => route.params.id as string);
 
 const pageTitle = computed(() => 
   genre.value ? `${genre.value.name} - Genre` : 'Genre Details'

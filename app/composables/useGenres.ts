@@ -23,13 +23,13 @@ export function useGenres() {
   };
 }
 
-export function useGenre(id: number) {
+export function useGenre(id: MaybeRefOrGetter<string>) {
   const {
     data: genre,
     error,
     pending,
     refresh,
-  } = useAsyncData(`genre-${id}`, () => $fetch<SingaGenre>(`/api/genres/${id}`), {
+  } = useAsyncData(`genre-${toValue(id)}`, () => $fetch<SingaGenre>(`/api/genres/${toValue(id)}`), {
     timeout: TIME_OUT,
   });
 
